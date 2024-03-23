@@ -15,6 +15,7 @@ from ..pipeline import Tokenizer
 from ..version import __pickle__
 
 from .terms import Terms
+import fickling
 
 
 class Scoring:
@@ -281,7 +282,7 @@ class Scoring:
 
         with open(path, "rb") as handle:
             # Load scoring
-            self.__dict__.update(pickle.load(handle))
+            self.__dict__.update(fickling.load(handle))
 
             # Load terms
             if self.config.get("terms"):

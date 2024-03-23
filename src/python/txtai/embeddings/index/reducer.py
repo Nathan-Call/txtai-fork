@@ -3,6 +3,7 @@ Reducer module
 """
 
 import pickle
+import fickling
 
 # Conditionally import dimensionality reduction libraries as they aren't installed by default
 try:
@@ -86,7 +87,7 @@ class Reducer:
 
         # Dimensionality reduction
         with open(path, "rb") as handle:
-            self.model = pickle.load(handle)
+            self.model = fickling.load(handle)
 
     def save(self, path):
         """

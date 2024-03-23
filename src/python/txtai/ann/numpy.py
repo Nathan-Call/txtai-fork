@@ -9,6 +9,7 @@ import numpy as np
 from ..version import __pickle__
 
 from .base import ANN
+import fickling
 
 
 class NumPy(ANN):
@@ -30,7 +31,7 @@ class NumPy(ANN):
     def load(self, path):
         # Load array from file
         with open(path, "rb") as handle:
-            self.backend = self.tensor(pickle.load(handle))
+            self.backend = self.tensor(fickling.load(handle))
 
     def index(self, embeddings):
         # Create index

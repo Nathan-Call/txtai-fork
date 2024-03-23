@@ -9,7 +9,6 @@ import argparse
 import csv
 import json
 import os
-import pickle
 import sqlite3
 import time
 
@@ -27,6 +26,7 @@ from elasticsearch.helpers import bulk
 from txtai.embeddings import Embeddings
 from txtai.pipeline import Extractor, LLM, Tokenizer
 from txtai.scoring import ScoringFactory
+import fickling
 
 
 class Index:
@@ -283,7 +283,7 @@ class RankBM25(Index):
     def index(self):
         if os.path.exists(self.output) and not self.refresh:
             with open(self.output, "rb") as f:
-                ids, model = pickle.load(f)
+                ids, model = fickling.load(f)
         else:
             # Tokenize data
             tokenizer, data = Tokenizer(), []

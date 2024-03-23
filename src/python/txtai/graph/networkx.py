@@ -3,6 +3,7 @@ NetworkX module
 """
 
 import pickle
+import fickling
 
 # Conditional import
 try:
@@ -146,7 +147,7 @@ class NetworkX(Graph):
     def loadgraph(self, path):
         # Load graph network
         with open(path, "rb") as handle:
-            self.backend = pickle.load(handle)
+            self.backend = fickling.load(handle)
 
     def savegraph(self, path):
         # Save graph

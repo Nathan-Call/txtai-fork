@@ -5,6 +5,7 @@ IndexIds module
 import pickle
 
 from ...version import __pickle__
+import fickling
 
 
 class IndexIds:
@@ -50,7 +51,7 @@ class IndexIds:
         else:
             # Standard ids format
             with open(path, "rb") as handle:
-                self.ids = pickle.load(handle)
+                self.ids = fickling.load(handle)
 
     def save(self, path):
         """

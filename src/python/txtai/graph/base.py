@@ -12,6 +12,7 @@ from ..archive import ArchiveFactory
 from ..version import __pickle__
 
 from .topics import Topics
+import fickling
 
 
 # pylint: disable=R0904
@@ -362,13 +363,13 @@ class Graph:
             path = f"{directory}/categories"
             if os.path.exists(path):
                 with open(path, "rb") as handle:
-                    self.categories = pickle.load(handle)
+                    self.categories = fickling.load(handle)
 
             # Load topics, if necessary
             path = f"{directory}/topics"
             if os.path.exists(path):
                 with open(path, "rb") as handle:
-                    self.topics = pickle.load(handle)
+                    self.topics = fickling.load(handle)
 
     def save(self, path):
         """

@@ -21,6 +21,7 @@ from ..version import __pickle__
 
 from .index import Action, Functions, Indexes, IndexIds, Reducer, Stream, Transform
 from .search import Explain, Ids, Query, Search, Terms
+import fickling
 
 
 # pylint: disable=C0302,R0904
@@ -828,7 +829,7 @@ class Embeddings:
 
         # Load configuration
         with open(f"{path}/{name}", "r" if jsonconfig else "rb", encoding="utf-8" if jsonconfig else None) as handle:
-            config = json.load(handle) if jsonconfig else pickle.load(handle)
+            config = json.load(handle) if jsonconfig else fickling.load(handle)
 
         # Add format parameter
         config["format"] = "json" if jsonconfig else "pickle"
