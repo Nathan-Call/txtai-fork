@@ -41,10 +41,10 @@ class Application:
 
         if query:
             query = urllib.parse.quote_plus(query)
-            data = requests.get(Application.SEARCH_TEMPLATE % query).json()
+            data = requests.get(Application.SEARCH_TEMPLATE % query, timeout=60).json()
             if data and data[1]:
                 page = urllib.parse.quote_plus(data[1][0])
-                content = requests.get(Application.CONTENT_TEMPLATE % page).json()
+                content = requests.get(Application.CONTENT_TEMPLATE % page, timeout=60).json()
                 content = list(content["query"]["pages"].values())[0]["extract"]
 
                 st.write(self.summary(content))
