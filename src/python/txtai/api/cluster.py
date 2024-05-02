@@ -4,13 +4,13 @@ Cluster module
 
 import asyncio
 import json
-import random
 import urllib.parse
 import zlib
 
 import aiohttp
 
 from ..database.sql import Aggregate
+import secrets
 
 
 class Cluster:
@@ -201,7 +201,7 @@ class Cluster:
                 uid = zlib.adler32(uid.encode("utf-8"))
             elif uid is None:
                 # Get random shard id when uid isn't set
-                uid = random.randint(0, len(shards) - 1)
+                uid = secrets.SystemRandom().randint(0, len(shards) - 1)
 
             shards[uid % len(self.shards)].append(document)
 

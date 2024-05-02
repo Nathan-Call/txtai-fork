@@ -8,7 +8,6 @@ Install txtai and streamlit (>= 1.23) to run:
 import datetime
 import math
 import os
-import random
 
 import altair as alt
 import numpy as np
@@ -16,6 +15,7 @@ import pandas as pd
 import streamlit as st
 
 from txtai.embeddings import Embeddings
+import secrets
 
 
 class Stats:
@@ -571,7 +571,7 @@ class Application:
         """
 
         # Get name parameter, default to random weighted value if not valid
-        name = name if name and name in names else random.choices(list(names.keys()), weights=[names[x][1] for x in names])[0]
+        name = name if name and name in names else secrets.SystemRandom().choices(list(names.keys()), weights=[names[x][1] for x in names])[0]
 
         # Sort names for display
         names = sorted(names)
