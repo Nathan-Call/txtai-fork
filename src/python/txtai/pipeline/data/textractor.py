@@ -7,6 +7,7 @@ import os
 
 from subprocess import Popen
 from urllib.request import urlopen
+from security import safe_command
 
 # Conditional import
 try:
@@ -74,7 +75,7 @@ class Textractor(Segmentation):
         # pylint: disable=R1732,W0702,W1514
         # Check if java binary is available on path
         try:
-            _ = Popen(path, stdout=open(os.devnull, "w"), stderr=open(os.devnull, "w"))
+            _ = safe_command.run(Popen, path, stdout=open(os.devnull, "w"), stderr=open(os.devnull, "w"))
         except:
             return False
 
