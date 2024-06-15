@@ -7,11 +7,10 @@ Requires streamlit to be installed.
 
 import os
 import urllib.parse
-
-import requests
 import streamlit as st
 
 from txtai.pipeline import Summary
+from security import safe_requests
 
 
 class Application:
@@ -41,10 +40,10 @@ class Application:
 
         if query:
             query = urllib.parse.quote_plus(query)
-            data = requests.get(Application.SEARCH_TEMPLATE % query).json()
+            data = safe_requests.get(Application.SEARCH_TEMPLATE % query).json()
             if data and data[1]:
                 page = urllib.parse.quote_plus(data[1][0])
-                content = requests.get(Application.CONTENT_TEMPLATE % page).json()
+                content = safe_requests.get(Application.CONTENT_TEMPLATE % page).json()
                 content = list(content["query"]["pages"].values())[0]["extract"]
 
                 st.write(self.summary(content))
